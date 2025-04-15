@@ -211,6 +211,27 @@
             color: transparent;
             display: inline-block;
         }
+        
+        .copyright {
+            position: absolute;
+            bottom: 10px;
+            left: 0;
+            right: 0;
+            text-align: center;
+            font-size: 0.75rem;
+            color: rgba(75, 85, 99, 0.8);
+            padding: 0.5rem;
+            z-index: 50;
+        }
+        
+        .copyright span {
+            position: relative;
+            padding: 0.5rem 1rem;
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 1rem;
+            backdrop-filter: blur(5px);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
     </style>
 </head>
 <body class="min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-50 to-gray-100">
@@ -242,8 +263,8 @@
         <!-- Formulário de Login -->
         <div class="w-full md:w-3/5 p-8 md:p-12 form-side rounded-r-lg">
             <div class="text-center mb-8">
-                <img src="images/sicoob_grnade.png" alt="Logo GED Sicoob" class="h-=20 mx-auto mb-4">
-                <h1 class="text-2xl font-bold text-gray-800">Bem-vindo ao <span class="gradient-text">GED Sicoob</span></h1>
+                <img src="images/sicoob_grnade.png" alt="Logo GED Sicoob" class="h-28 mx-auto mb-4">
+                <h1 class="text-2xl font-bold text-gray-800">Bem-vindo ao <span class="gradient-text">GED Sicoob Cruz Alta</span></h1>
                 <p class="text-gray-500 mt-2">Acesse sua conta para gerenciar seus documentos</p>
             </div>
 
@@ -315,9 +336,14 @@
             </div>
         </div>
     </div>
+    
+    <!-- Copyright -->
+    <div class="copyright">
+        <span>&copy; 2025 Sicoob Cruz Alta. Todos os direitos reservados.</span>
+    </div>
 
     <script>
-        // Script para animação avançada da logo
+        // Script para animação da logo
         const logo = document.getElementById('sicoobLogo');
         const container = document.getElementById('logoContainer');
         const logoGlow = document.getElementById('logoGlow');
@@ -339,7 +365,7 @@
                 const deltaY = (mouseY - containerCenterY) / 15;
                 
                 // Calcular rotação baseada na posição do mouse
-                const rotateX = deltaY * -0.5; // Inverter para efeito de "inclinação natural"
+                const rotateX = deltaY * -0.5;
                 const rotateY = deltaX * 0.5;
                 
                 // Aplicar transformação para mover e girar a logo
