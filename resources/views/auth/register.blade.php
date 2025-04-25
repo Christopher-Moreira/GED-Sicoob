@@ -155,8 +155,8 @@
         .form-side {
             background: white;
         }
-        
-        .checkbox-custom {
+                
+                .checkbox-custom {
             position: relative;
             height: 18px;
             width: 18px;
@@ -165,6 +165,7 @@
             border-radius: 4px;
             cursor: pointer;
             transition: all 0.2s ease;
+            z-index: 1; 
         }
         
         .checkbox-custom:after {
@@ -277,33 +278,35 @@
             <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded-lg mb-4 hidden" id="error-container">
                 <p id="error-message" class="flex items-center">
                     <i class='bx bx-error-circle mr-2 text-lg'></i>
-                    <span>Mensagem de erro aqui</span>
+                    <span>Erro!</span>
                 </p>
             </div>
 
-            <form id="register-form" class="space-y-4">
+            <form id="register-form" class="space-y-4" method="POST" action="{{ route('login') }}">
+                @csrf 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
                         <label class="block text-gray-700 text-sm font-medium mb-2">Nome</label>
                         <div class="relative">
-                            <input type="text" name="firstname" 
+                            <input type="text" name="name" placeholder="Nome e Sobrenome"
                                 class="input-field w-full px-4 py-3 rounded-lg bg-gray-50"
                                 placeholder="Seu nome"
                                 required autofocus>
-                            <i class='bx bx-user absolute right-3 top-3 text-gray-400 input-icon'></i>
+                            <i class='bx bx-envelope absolute right-3 top-3 text-gray-400 input-icon'></i>
                         </div>
                     </div>
                     
+                    <!--
                     <div>
                         <label class="block text-gray-700 text-sm font-medium mb-2">Sobrenome</label>
-                        <div class="relative">
+                        <div class="relative">  
                             <input type="text" name="lastname" 
                                 class="input-field w-full px-4 py-3 rounded-lg bg-gray-50"
                                 placeholder="Seu sobrenome"
                                 required>
                             <i class='bx bx-user absolute right-3 top-3 text-gray-400 input-icon'></i>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
 
                 <div>
@@ -320,13 +323,11 @@
                 <div>
                     <label class="block text-gray-700 text-sm font-medium mb-2">Cooperativa</label>
                     <div class="relative">
-                        <select name="cooperative" 
+                        <select name="cooperativa" 
                             class="input-field w-full px-4 py-3 rounded-lg bg-gray-50 appearance-none"
                             required>
                             <option value="" disabled selected>Selecione sua cooperativa</option>
-                            <option value="cruz-alta">Sicoob Cruz Alta</option>
-                            <option value="credicitrus">Sicoob Credicitrus</option>
-                            <option value="credicom">Sicoob Credicom</option>
+                            <option value="cruz-alta">5166</option>
                             <option value="outras">Outras</option>
                         </select>
                         <i class='bx bx-buildings absolute right-3 top-3 text-gray-400 input-icon'></i>
@@ -336,7 +337,7 @@
                 <div>
                     <label class="block text-gray-700 text-sm font-medium mb-2">Cargo</label>
                     <div class="relative">
-                        <input type="text" name="position" 
+                        <input type="text" name="cargo" 
                             class="input-field w-full px-4 py-3 rounded-lg bg-gray-50"
                             placeholder="Seu cargo na cooperativa"
                             required>
@@ -372,7 +373,7 @@
 
                 <div class="flex items-center">
                     <div class="relative inline-block mr-2">
-                        <input type="checkbox" name="terms" id="terms" class="opacity-0 absolute h-5 w-5" required>
+                        <input type="checkbox" name="terms" id="terms" class="absolute h-5 w-5 opacity-0 cursor pointer" required>
                         <div class="checkbox-custom"></div>
                     </div>
                     <label for="terms" class="text-sm text-gray-600">
@@ -388,10 +389,10 @@
 
             <div class="mt-6 text-center">
                 <p class="text-gray-600">Já possui uma conta? 
-                    <a href="login.html" class="text-green-600 font-medium hover:text-green-800 hover:underline transition-colors">Entrar</a>
+                    <a href="login" class="text-green-600 font-medium hover:text-green-800 hover:underline transition-colors">Entrar</a>
                 </p>
             </div>
-
+            <!-- Login com Redes 
             <div class="mt-6 border-t pt-6">
                 <p class="text-center text-gray-500 text-sm mb-4">Ou registre-se com</p>
                 <div class="flex justify-center gap-4">
@@ -402,7 +403,7 @@
                         <i class='bx bxl-microsoft text-xl text-gray-600'></i>
                     </a>
                 </div>
-            </div>
+            </div> -->
         </div>
     </div>
     
@@ -410,7 +411,7 @@
     <div class="copyright">
         <span>&copy; 2025 Sicoob Cruz Alta. Todos os direitos reservados.</span>
     </div>
-
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>
         // Script para animação da logo
         const logo = document.getElementById('sicoobLogo');
@@ -586,23 +587,23 @@
             if (form) {
                 form.addEventListener('submit', function(e) {
                     e.preventDefault();
-                    
-                    // Verificar se as senhas coincidem
-                    const password = this.querySelector('[name="password"]').value;
-                    const confirmPassword = this.querySelector('[name="confirm_password"]').value;
-                    
-                    if (password !== confirmPassword) {
-                        errorContainer.classList.remove('hidden');
-                        errorMessage.textContent = 'As senhas não coincidem!';
-                        return;
-                    }
-                    
-                    // Simulação de envio bem-sucedido
-                    errorContainer.classList.add('hidden');
-                    alert('Cadastro realizado com sucesso! Você será redirecionado para a página de login.');
-                    window.location.href = 'login.html';
-                });
-            }
+                
+                // Verificar se as senhas coincidem
+                const password = this.querySelector('[name="password"]').value;
+                const confirmPassword = this.querySelector('[name="confirm_password"]').value;
+                
+                if (password !== confirmPassword) {
+                    errorContainer.classList.remove('hidden');
+                    errorMessage.textContent = 'As senhas não coincidem!';
+                    return;
+                }
+                
+                // Remove a mensagem de erro se estiver visível
+                errorContainer.classList.add('hidden');
+                
+                // Envia o formulário manualmente
+                this.submit();
+            });
         }
     </script>
 </body>

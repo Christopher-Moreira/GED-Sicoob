@@ -301,15 +301,6 @@
                     </div>
                 </div>
 
-                <div class="flex items-center justify-between">
-                    <div class="flex items-center">
-                        <div class="relative inline-block mr-2">
-                            <input type="checkbox" name="remember" id="remember" class="opacity-0 absolute h-5 w-5">
-                            <div class="checkbox-custom"></div>
-                        </div>
-                        <label for="remember" class="text-sm text-gray-600">Lembrar-me</label>
-                    </div>
-                </div>
 
                 <button type="submit" 
                     class="login-button w-full bg-green-600 hover:bg-green-700 text-white font-semibold py-3 px-4 rounded-lg shadow-md hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50">
@@ -319,10 +310,11 @@
 
             <div class="mt-6 text-center">
                 <p class="text-gray-600">Não tem uma conta? 
-                    <a href="#" class="text-green-600 font-medium hover:text-green-800 hover:underline transition-colors">Registre-se</a>
+                    <a href="register" class="text-green-600 font-medium hover:text-green-800 hover:underline transition-colors">Registre-se</a>
+                    
                 </p>
             </div>
-
+            <!-- Redes Sociais 
             <div class="mt-8 border-t pt-6">
                 <p class="text-center text-gray-500 text-sm mb-4">Ou entre com</p>
                 <div class="flex justify-center gap-4">
@@ -333,7 +325,7 @@
                         <i class='bx bxl-microsoft text-xl text-gray-600'></i>
                     </a>
                 </div>
-            </div>
+            </div> -->
         </div>
     </div>
     

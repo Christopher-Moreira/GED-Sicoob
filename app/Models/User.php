@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -19,11 +18,15 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name',
+        'lastname',
         'email',
+        'cooperativa',
+        'cargo',
         'password',
         'segregacao',
         'can_be_admin',
         'can_be_user',
+        'google2fa_secret',
     ];
 
     /**
@@ -41,9 +44,10 @@ class User extends Authenticatable
      *
      * @var array<string, string>
      */
-     protected $casts = [
+    protected $casts = [
         'email_verified_at' => 'datetime',
         'can_be_admin' => 'boolean',
         'can_be_user' => 'boolean',
-     ];
+        'last_accessed_at' => 'datetime',
+    ];
 }
