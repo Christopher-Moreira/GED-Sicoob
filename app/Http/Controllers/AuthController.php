@@ -17,9 +17,8 @@ class AuthController extends Controller
     public function register(Request $request){
         $request->merge(['name' => $request->firstname . ' ' . $request->lastname]);
         $request->validate([
-            'firstname' => ['required', 'string', 'max:255'],
-            'lastname' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users','regex:/@sicoob\.com\.br$/'],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
             'cooperativa' => ['required', 'string'],
             'cargo' => ['required', 'string'],
@@ -46,7 +45,7 @@ class AuthController extends Controller
         return view('auth.login');
     }
 
-    public function login(Request $request)
+        public function login(Request $request)
     {
         $credentials = $request->validate([
             'email' => ['required', 'email'],

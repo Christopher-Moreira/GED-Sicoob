@@ -24,12 +24,11 @@ Route::middleware('guest')->group(function () {
     Route::post('/register', [AuthController::class, 'register']);
 
     //Rota LandingPage para teste
-    Route::get('/ged', [AuthController::class, 'showLandingPage'])->name('login');
+    //Route::get('/ged', [AuthController::class, 'showLandingPage'])->name('login');
     
 });
 
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout')->middleware('auth');
-
 Route::middleware('auth')->group(function () {
     Route::get('/pagina-principal', [AuthController::class, 'paginaPrincipal'])->name('paginaPrincipal');
     Route::get('/', function () {

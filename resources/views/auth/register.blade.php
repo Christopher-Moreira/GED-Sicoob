@@ -363,7 +363,7 @@
                 <div>
                     <label class="block text-gray-700 text-sm font-medium mb-2">Confirmar Senha</label>
                     <div class="relative">
-                        <input type="password" name="confirm_password" 
+                        <input type="password" name="password_confirmation"" 
                             class="input-field w-full px-4 py-3 rounded-lg bg-gray-50"
                             placeholder="••••••••"
                             required>
@@ -590,7 +590,7 @@
                 
                 // Verificar se as senhas coincidem
                 const password = this.querySelector('[name="password"]').value;
-                const confirmPassword = this.querySelector('[name="confirm_password"]').value;
+                const confirmPassword = this.querySelector('[name="password_confirmation"]').value;
                 
                 if (password !== confirmPassword) {
                     errorContainer.classList.remove('hidden');
