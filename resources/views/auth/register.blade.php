@@ -278,26 +278,28 @@
             <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded-lg mb-4 hidden" id="error-container">
                 <p id="error-message" class="flex items-center">
                     <i class='bx bx-error-circle mr-2 text-lg'></i>
-                    <span>Mensagem de erro aqui</span>
+                    <span>Erro!</span>
                 </p>
             </div>
 
-            <form id="register-form" class="space-y-4">
+            <form id="register-form" class="space-y-4" method="POST" action="{{ route('register') }}">
+                @csrf 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
                         <label class="block text-gray-700 text-sm font-medium mb-2">Nome</label>
                         <div class="relative">
-                            <input type="text" name="firstname" 
+                            <input type="text" name="name" placeholder="Nome"
                                 class="input-field w-full px-4 py-3 rounded-lg bg-gray-50"
                                 placeholder="Seu nome"
                                 required autofocus>
-                            <i class='bx bx-user absolute right-3 top-3 text-gray-400 input-icon'></i>
+                            <i class='bx bx-envelope absolute right-3 top-3 text-gray-400 input-icon'></i>
                         </div>
                     </div>
                     
+                    
                     <div>
                         <label class="block text-gray-700 text-sm font-medium mb-2">Sobrenome</label>
-                        <div class="relative">
+                        <div class="relative">  
                             <input type="text" name="lastname" 
                                 class="input-field w-full px-4 py-3 rounded-lg bg-gray-50"
                                 placeholder="Seu sobrenome"
@@ -361,7 +363,7 @@
                 <div>
                     <label class="block text-gray-700 text-sm font-medium mb-2">Confirmar Senha</label>
                     <div class="relative">
-                        <input type="password" name="confirm_password" 
+                        <input type="password" name="password_confirmation"" 
                             class="input-field w-full px-4 py-3 rounded-lg bg-gray-50"
                             placeholder="••••••••"
                             required>
@@ -411,70 +413,83 @@
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>
-        // Script para animação da logo
+    document.addEventListener('DOMContentLoaded', function() {
+        // Elementos principais
         const logo = document.getElementById('sicoobLogo');
         const container = document.getElementById('logoContainer');
         const logoGlow = document.getElementById('logoGlow');
-        
+        const passwordInput = document.getElementById('password');
+        const strengthIndicator = document.getElementById('password-strength');
+        const form = document.getElementById('register-form');
+        const errorContainer = document.getElementById('error-container');
+        const errorMessage = document.getElementById('error-message').querySelector('span');
+        const checkbox = document.getElementById('terms');
+
+        // 1. Animação da Logo e Efeitos Visuais
         if (logo && container) {
-            // Efeito de flutuação inicial
+            // Efeito de movimento com o mouse
             document.addEventListener('mousemove', (e) => {
-                // Obter posição do mouse relativamente à janela
                 const mouseX = e.clientX;
                 const mouseY = e.clientY;
                 
-                // Obter dimensões e posição do container
                 const rect = container.getBoundingClientRect();
                 const containerCenterX = rect.left + rect.width / 2;
                 const containerCenterY = rect.top + rect.height / 2;
                 
-                // Calcular a distância do mouse ao centro do container
                 const deltaX = (mouseX - containerCenterX) / 15;
                 const deltaY = (mouseY - containerCenterY) / 15;
                 
-                // Calcular rotação baseada na posição do mouse
                 const rotateX = deltaY * -0.5;
                 const rotateY = deltaX * 0.5;
                 
-                // Aplicar transformação para mover e girar a logo
                 logo.style.transform = `translate(${deltaX}px, ${deltaY}px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
                 
-                // Atualizar a posição do efeito de brilho
+                // Efeito de brilho
                 if (logoGlow) {
                     logoGlow.style.opacity = '0.7';
                     logoGlow.style.left = `${mouseX - rect.left}px`;
                     logoGlow.style.top = `${mouseY - rect.top}px`;
                 }
                 
-                // Criar partículas quando o mouse se move próximo à logo
+                // Criar partículas quando próximo à logo
                 if (Math.abs(mouseX - containerCenterX) < 150 && Math.abs(mouseY - containerCenterY) < 150) {
                     createParticle(mouseX - rect.left, mouseY - rect.top);
                 }
             });
             
-            // Restaurar posição original quando o mouse sai
+            // Resetar posição quando o mouse sai
             container.addEventListener('mouseleave', () => {
                 logo.style.transform = 'translate(0px, 0px) rotateX(0deg) rotateY(0deg)';
-                if (logoGlow) {
-                    logoGlow.style.opacity = '0';
+                if (logoGlow) logoGlow.style.opacity = '0';
+            });
+            
+            // Efeito ao clicar na logo
+            logo.addEventListener('click', () => {
+                logo.style.transform = 'scale(1.1) rotate(5deg)';
+                setTimeout(() => logo.style.transform = 'scale(1) rotate(0deg)', 300);
+                
+                // Efeito de explosão de partículas
+                const rect = logo.getBoundingClientRect();
+                const containerRect = container.getBoundingClientRect();
+                const centerX = (rect.left + rect.right) / 2 - containerRect.left;
+                const centerY = (rect.top + rect.bottom) / 2 - containerRect.top;
+                
+                for (let i = 0; i < 20; i++) {
+                    setTimeout(() => createParticle(centerX, centerY), i * 50);
                 }
             });
             
-            // Função para criar partículas
+            // Função para criar partículas animadas
             function createParticle(x, y) {
                 const particle = document.createElement('div');
                 particle.className = 'particle';
                 
-                // Tamanho aleatório
                 const size = Math.random() * 6 + 2;
                 particle.style.width = `${size}px`;
                 particle.style.height = `${size}px`;
-                
-                // Posição inicial
                 particle.style.left = `${x}px`;
                 particle.style.top = `${y}px`;
                 
-                // Direção aleatória
                 const angle = Math.random() * Math.PI * 2;
                 const speed = Math.random() * 2 + 1;
                 const vx = Math.cos(angle) * speed;
@@ -482,7 +497,6 @@
                 
                 container.appendChild(particle);
                 
-                // Animação da partícula
                 let opacity = 0.8;
                 let posX = x;
                 let posY = y;
@@ -496,110 +510,90 @@
                     particle.style.left = `${posX}px`;
                     particle.style.top = `${posY}px`;
                     
-                    if (opacity > 0) {
-                        requestAnimationFrame(animateParticle);
-                    } else {
-                        particle.remove();
-                    }
+                    opacity > 0 ? requestAnimationFrame(animateParticle) : particle.remove();
                 }
                 
                 requestAnimationFrame(animateParticle);
             }
-            
-            // Interação ao clicar na logo
-            logo.addEventListener('click', () => {
-                logo.style.transform = 'scale(1.1) rotate(5deg)';
-                setTimeout(() => {
-                    logo.style.transform = 'scale(1) rotate(0deg)';
-                }, 300);
-                
-                // Criar efeito de explosão de partículas
-                const rect = logo.getBoundingClientRect();
-                const containerRect = container.getBoundingClientRect();
-                const centerX = (rect.left + rect.right) / 2 - containerRect.left;
-                const centerY = (rect.top + rect.bottom) / 2 - containerRect.top;
-                
-                for (let i = 0; i < 20; i++) {
-                    setTimeout(() => {
-                        createParticle(centerX, centerY);
-                    }, i * 50);
-                }
-            });
-            
-            // Animação para o checkbox customizado
-            const checkbox = document.getElementById('terms');
-            if (checkbox) {
-                checkbox.addEventListener('change', function() {
-                    const checkboxCustom = this.nextElementSibling;
-                    if (this.checked) {
-                        checkboxCustom.classList.add('bg-green-600', 'border-green-600');
-                    } else {
-                        checkboxCustom.classList.remove('bg-green-600', 'border-green-600');
-                    }
-                });
-            }
-            
-            // Verificador de força da senha
-            const passwordInput = document.getElementById('password');
-            const strengthIndicator = document.getElementById('password-strength');
-            
-            if (passwordInput && strengthIndicator) {
-                passwordInput.addEventListener('input', function() {
-                    const password = this.value;
-                    let strength = 0;
-                    
-                    // Comprimento mínimo
-                    if (password.length >= 8) strength += 20;
-                    
-                    // Letras minúsculas
-                    if (/[a-z]/.test(password)) strength += 20;
-                    
-                    // Letras maiúsculas
-                    if (/[A-Z]/.test(password)) strength += 20;
-                    
-                    // Números
-                    if (/[0-9]/.test(password)) strength += 20;
-                    
-                    // Caracteres especiais
-                    if (/[^A-Za-z0-9]/.test(password)) strength += 20;
-                    
-                    // Atualizar barra de progresso
-                    strengthIndicator.style.width = `${strength}%`;
-                    
-                    // Mudar cor com base na força
-                    if (strength < 40) {
-                        strengthIndicator.className = 'password-strength bg-red-500';
-                    } else if (strength < 80) {
-                        strengthIndicator.className = 'password-strength bg-yellow-500';
-                    } else {
-                        strengthIndicator.className = 'password-strength bg-green-500';
-                    }
-                });
-            }
-            
-            // Validar formulário ao enviar
-            const form = document.getElementById('register-form');
-            const errorContainer = document.getElementById('error-container');
-            const errorMessage = document.getElementById('error-message').querySelector('span');
-            
-            if (form) {
-                form.addEventListener('submit', function(e) {
-                    e.preventDefault();
-                    
-                    // Verificar se as senhas coincidem
-                    const password = this.querySelector('[name="password"]').value;
-                    const confirmPassword = this.querySelector('[name="confirm_password"]').value;
-                    
-                    if (password !== confirmPassword) {
-                        errorContainer.classList.remove('hidden');
-                        errorMessage.textContent = 'As senhas não coincidem!';
-                        return;
-                    }
-                    
-            
-                });
-            }
         }
-    </script>
+
+        // 2. Validação de Força da Senha
+        if (passwordInput && strengthIndicator) {
+            passwordInput.addEventListener('input', function() {
+                const password = this.value;
+                let strength = 0;
+                
+                // Critérios de força
+                const criteria = {
+                    length: password.length >= 8,
+                    lowercase: /[a-z]/.test(password),
+                    uppercase: /[A-Z]/.test(password),
+                    number: /[0-9]/.test(password),
+                    specialChar: /[^A-Za-z0-9]/.test(password),
+                    longPassword: password.length >= 12
+                };
+                
+                // Pontuar cada critério atendido
+                Object.values(criteria).forEach(met => met && strength++);
+                
+                // Converter para porcentagem (6 critérios possíveis)
+                const strengthPercent = (strength / 6) * 100;
+                
+                // Atualizar visualização
+                strengthIndicator.style.width = `${strengthPercent}%`;
+                
+                // Atualizar cor conforme força
+                if (strength <= 2) {
+                    strengthIndicator.className = 'password-strength bg-red-500';
+                } else if (strength <= 4) {
+                    strengthIndicator.className = 'password-strength bg-yellow-500';
+                } else {
+                    strengthIndicator.className = 'password-strength bg-green-500';
+                }
+                
+                // Resetar se vazio
+                if (!password) strengthIndicator.style.width = '0%';
+            });
+        }
+
+        // 3. Checkbox Customizado
+        if (checkbox) {
+            checkbox.addEventListener('change', function() {
+                const checkboxCustom = this.nextElementSibling;
+                this.checked ? 
+                    checkboxCustom.classList.add('bg-green-600', 'border-green-600') :
+                    checkboxCustom.classList.remove('bg-green-600', 'border-green-600');
+            });
+        }
+
+        // 4. Validação do Formulário
+        if (form) {
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Verificar se as senhas coincidem
+                const password = this.querySelector('[name="password"]').value;
+                const confirmPassword = this.querySelector('[name="password_confirmation"]').value;
+                
+                if (password !== confirmPassword) {
+                    errorContainer.classList.remove('hidden');
+                    errorMessage.textContent = 'As senhas não coincidem!';
+                    return;
+                }
+                
+                // Verificar força mínima da senha
+                if (password.length < 8) {
+                    errorContainer.classList.remove('hidden');
+                    errorMessage.textContent = 'A senha deve ter pelo menos 8 caracteres!';
+                    return;
+                }
+                
+                // Se tudo estiver ok, submeter o formulário
+                errorContainer.classList.add('hidden');
+                this.submit();
+            });
+        }
+    });
+</script>
 </body>
 </html>

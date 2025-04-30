@@ -7,23 +7,12 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 
-class User extends Authenticatable
+class Documentos extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array<int, string>
-     */
     protected $fillable = [
-        'name',
-        'lastname',
-        'email',
-        'cooperativa',
-        'cargo',
-        'password',
-        'segregacao',
+     
     ];
 
     /**
@@ -32,8 +21,7 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $hidden = [
-        'password',
-        'remember_token',
+       
     ];
 
     /**
@@ -42,12 +30,6 @@ class User extends Authenticatable
      * @var array<string, string>
      */
     protected $casts = [
-        'ativo' => 'boolean',
-        'google2fa_screte' => 'boolean',
-        'can_be_admin' => 'boolean',
-        'can_be_user' => 'boolean',
-        'can_edit' => 'boolean',
-        'can_delete' =>'boolean',
-        'can_see' => 'boolean',
+      
     ];
 }
