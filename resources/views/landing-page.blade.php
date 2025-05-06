@@ -106,6 +106,77 @@
         .sidebar-item.active i {
             color: #007e3a;
         }
+        
+        /* Modal styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .modal-content {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 0.5rem;
+            width: 90%;
+            max-width: 400px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+            animation: modalFadeIn 0.3s ease-out;
+        }
+        
+        @keyframes modalFadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .modal-option {
+            display: flex;
+            align-items: center;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            border: 1px solid #e0e0e0;
+        }
+        
+        .modal-option:hover {
+            background-color: rgba(0, 126, 58, 0.05);
+            border-color: #007e3a;
+            transform: translateY(-2px);
+        }
+        
+        .modal-option i {
+            font-size: 1.5rem;
+            margin-right: 1rem;
+            color: #007e3a;
+        }
+        
+        .close-modal {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #666;
+        }
+        
+        .close-modal:hover {
+            color: #333;
+        }
     </style>
 </head>
 <body class="min-h-screen">
@@ -125,7 +196,7 @@
             
             <!-- Create Button -->
             <div class="p-4">
-                <button class="create-button w-full flex items-center justify-center text-white rounded-md py-2 px-4 font-medium">
+                <button id="openModalBtn" class="create-button w-full flex items-center justify-center text-white rounded-md py-2 px-4 font-medium">
                     <i class='bx bx-plus mr-2'></i> Criar ou Carregar
                 </button>
             </div>
@@ -143,6 +214,12 @@
                         <a href="#" class="sidebar-item flex items-center px-4 py-3 text-gray-600 rounded-md">
                             <i class='bx bx-folder text-xl mr-3'></i>
                             <span>ARQUIVOS</span>
+                        </a>
+                    </li>
+                    <li class="mb-1">
+                        <a href="#" class="sidebar-item flex items-center px-4 py-3 text-gray-600 rounded-md">
+                            <i class='bx bx-user text-xl mr-3'></i>
+                            <span>ACESSOS</span>
                         </a>
                     </li>
                     <li class="mb-1">
@@ -280,14 +357,66 @@
                                 </button>
                                 <p class="text-xs text-gray-500 mt-3">Formatos suportados: PDF, DOCX, XLSX, PNG, JPG</p>
                             </div>
-
-                                </div>
-                            </div>
                         </div>
                     </div>
                 </div>
             </main>
         </div>
     </div>
+    
+    <!-- Modal -->
+    <div id="createModal" class="modal hidden">
+        <div class="modal-content relative">
+            <span class="close-modal" id="closeModalBtn">&times;</span>
+            <h2 class="text-xl font-semibold text-sicoob-green mb-6">O que você deseja fazer?</h2>
+            
+            <div class="modal-option" id="createFolderOption">
+                <i class='bx bx-folder-plus'></i>
+                <div>
+                    <h3 class="font-medium">Criar nova pasta</h3>
+                    <p class="text-xs text-gray-500">Organize seus documentos em pastas</p>
+                </div>
+            </div>
+            
+            <div class="modal-option" id="uploadFileOption">
+                <i class='bx bx-upload'></i>
+                <div>
+                    <h3 class="font-medium">Enviar arquivo</h3>
+                    <p class="text-xs text-gray-500">Carregue documentos para o sistema</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Modal functionality
+        const modal = document.getElementById('createModal');
+        const openModalBtn = document.getElementById('openModalBtn');
+        const closeModalBtn = document.getElementById('closeModalBtn');
+        const createFolderOption = document.getElementById('createFolderOption');
+        const uploadFileOption = document.getElementById('uploadFileOption');
+        
+        // Open modal
+        openModalBtn.addEventListener('click', () => {
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+        });
+        
+        // Close modal
+        closeModalBtn.addEventListener('click', () => {
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+        });
+        
+        // Close modal when clicking outside
+        window.addEventListener('click', (event) => {
+            if (event.target === modal) {
+                modal.classList.add('hidden');
+                modal.classList.remove('flex');
+            }
+        });
+        
+    
+    </script>
 </body>
 </html>

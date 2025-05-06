@@ -271,19 +271,13 @@
             <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded-lg mb-4 hidden" id="error-container">
                 <p id="error-message" class="flex items-center">
                     <i class='bx bx-error-circle mr-2 text-lg'></i>
-<<<<<<< HEAD
                     <span>Mensagem de erro aqui</span>
                 </p>
             </div>
-
-            <form id="login-form" class="space-y-6">
-=======
-                </p>
-            </div>
-
-            <form class="space-y-6" method="POST" action="{{ route('login') }}">
->>>>>>> temp-branch
-                <div>
+            
+            <form class="space-y-6" method = "POST" action = "{{ route('login') }}">
+            @csrf
+            <div>
                     <label class="block text-gray-700 text-sm font-medium mb-2">E-mail</label>
                     <div class="relative">
                         <input type="email" name="email" 
@@ -297,11 +291,8 @@
                 <div>
                     <div class="flex justify-between items-center mb-2">
                         <label class="block text-gray-700 text-sm font-medium">Senha</label>
-<<<<<<< HEAD
-                        <a href="#" class="text-xs text-green-600 hover:text-green-800 hover:underline">Esqueceu a senha?</a>
-=======
-                        <!--- <a href="#" class="text-xs text-green-600 hover:text-green-800 hover:underline">Esqueceu a senha?</a> -->
->>>>>>> temp-branch
+                        <!--- <a href="#" class="text-xs text-green-600 hover:text-green-800 hover:underline">Esqueceu a senha?</a>
+                    -->
                     </div>
                     <div class="relative">
                         <input type="password" name="password" 
@@ -313,10 +304,10 @@
                 </div>
 
 
-                <button type="submit" 
-                    class="login-button w-full bg-green-600 hover:bg-green-700 text-white font-semibold py-3 px-4 rounded-lg shadow-md hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50">
-                    <i class='bx bx-log-in-circle mr-2'></i>Entrar
-                </button>
+                <button type="submit" class="login-button w-full bg-green-600 hover:bg-green-700 text-white font-semibold py-3 px-4 rounded-lg shadow-md hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50">
+    <i class='bx bx-user-circle mr-2'></i>Entrar
+</button>
+
             </form>
 
             <div class="mt-6 text-center">

@@ -21,36 +21,19 @@ Route::middleware('guest')->group(function () {
     Route::post('/login', [AuthController::class, 'login']);
     
     Route::get('/register', [AuthController::class, 'showRegistrationForm'])->name('register');
-<<<<<<< HEAD
-    Route::post('/register', [AuthController::class, 'register'])->name('register.submit');
-=======
     Route::post('/register', [AuthController::class, 'register']);
->>>>>>> temp-branch
 
     //Rota LandingPage para teste
-    //Route::get('/ged', [AuthController::class, 'showLandingPage'])->name('login');
+    Route::get('/ged', [AuthController::class, 'showLandingPage'])->name('login');
     
 });
 
-<<<<<<< HEAD
-    Route::post('/logout', [AuthController::class, 'logout'])->name('logout')->middleware('auth');
-    Route::middleware('auth')->group(function () {
-        Route::get('/pagina-principal', [AuthController::class, 'paginaPrincipal'])->name('paginaPrincipal');
-        Route::get('/', function () {
-            return redirect()->route('paginaPrincipal');
-        });
-
-
-    });
-=======
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout')->middleware('auth');
-
 Route::middleware('auth')->group(function () {
-    Route::get('/ged', [AuthController::class, 'LandingPage'])->name('LandingPage');
+    Route::get('/pagina-principal', [AuthController::class, 'paginaPrincipal'])->name('paginaPrincipal');
     Route::get('/', function () {
-        return redirect()->route('ged');
+        return redirect()->route('paginaPrincipal');    
     });
 
 
 });
->>>>>>> temp-branch

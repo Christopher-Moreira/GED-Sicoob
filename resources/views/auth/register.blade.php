@@ -282,11 +282,7 @@
                 </p>
             </div>
 
-<<<<<<< HEAD
-            <form id="register-form" class="space-y-4" method="POST" action="{{ route('register.submit') }}">
-=======
             <form id="register-form" class="space-y-4" method="POST" action="{{ route('register') }}">
->>>>>>> temp-branch
                 @csrf 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
@@ -300,13 +296,8 @@
                         </div>
                     </div>
                     
-<<<<<<< HEAD
                 
                     <div>  
-=======
-                    
-                    <div>
->>>>>>> temp-branch
                         <label class="block text-gray-700 text-sm font-medium mb-2">Sobrenome</label>
                         <div class="relative">  
                             <input type="text" name="lastname" 
@@ -372,11 +363,7 @@
                 <div>
                     <label class="block text-gray-700 text-sm font-medium mb-2">Confirmar Senha</label>
                     <div class="relative">
-<<<<<<< HEAD
                         <input type="password" name="password_confirmation"
-=======
-                        <input type="password" name="password_confirmation"" 
->>>>>>> temp-branch
                             class="input-field w-full px-4 py-3 rounded-lg bg-gray-50"
                             placeholder="••••••••"
                             required>
@@ -426,7 +413,6 @@
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>
-<<<<<<< HEAD
         // Script para animação da logo
         const logo = document.getElementById('sicoobLogo');
         const container = document.getElementById('logoContainer');
@@ -440,32 +426,10 @@
                 const mouseY = e.clientY;
                 
                 // Obter dimensões e posição do container
-=======
-    document.addEventListener('DOMContentLoaded', function() {
-        // Elementos principais
-        const logo = document.getElementById('sicoobLogo');
-        const container = document.getElementById('logoContainer');
-        const logoGlow = document.getElementById('logoGlow');
-        const passwordInput = document.getElementById('password');
-        const strengthIndicator = document.getElementById('password-strength');
-        const form = document.getElementById('register-form');
-        const errorContainer = document.getElementById('error-container');
-        const errorMessage = document.getElementById('error-message').querySelector('span');
-        const checkbox = document.getElementById('terms');
-
-        // 1. Animação da Logo e Efeitos Visuais
-        if (logo && container) {
-            // Efeito de movimento com o mouse
-            document.addEventListener('mousemove', (e) => {
-                const mouseX = e.clientX;
-                const mouseY = e.clientY;
-                
->>>>>>> temp-branch
                 const rect = container.getBoundingClientRect();
                 const containerCenterX = rect.left + rect.width / 2;
                 const containerCenterY = rect.top + rect.height / 2;
                 
-<<<<<<< HEAD
                 // Calcular a distância do mouse ao centro do container
                 const deltaX = (mouseX - containerCenterX) / 15;
                 const deltaY = (mouseY - containerCenterY) / 15;
@@ -478,34 +442,18 @@
                 logo.style.transform = `translate(${deltaX}px, ${deltaY}px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
                 
                 // Atualizar a posição do efeito de brilho
-=======
-                const deltaX = (mouseX - containerCenterX) / 15;
-                const deltaY = (mouseY - containerCenterY) / 15;
-                
-                const rotateX = deltaY * -0.5;
-                const rotateY = deltaX * 0.5;
-                
-                logo.style.transform = `translate(${deltaX}px, ${deltaY}px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
-                
-                // Efeito de brilho
->>>>>>> temp-branch
                 if (logoGlow) {
                     logoGlow.style.opacity = '0.7';
                     logoGlow.style.left = `${mouseX - rect.left}px`;
                     logoGlow.style.top = `${mouseY - rect.top}px`;
                 }
                 
-<<<<<<< HEAD
                 // Criar partículas quando o mouse se move próximo à logo
-=======
-                // Criar partículas quando próximo à logo
->>>>>>> temp-branch
                 if (Math.abs(mouseX - containerCenterX) < 150 && Math.abs(mouseY - containerCenterY) < 150) {
                     createParticle(mouseX - rect.left, mouseY - rect.top);
                 }
             });
             
-<<<<<<< HEAD
             // Restaurar posição original quando o mouse sai
             container.addEventListener('mouseleave', () => {
                 logo.style.transform = 'translate(0px, 0px) rotateX(0deg) rotateY(0deg)';
@@ -515,36 +463,10 @@
             });
             
             // Função para criar partículas
-=======
-            // Resetar posição quando o mouse sai
-            container.addEventListener('mouseleave', () => {
-                logo.style.transform = 'translate(0px, 0px) rotateX(0deg) rotateY(0deg)';
-                if (logoGlow) logoGlow.style.opacity = '0';
-            });
-            
-            // Efeito ao clicar na logo
-            logo.addEventListener('click', () => {
-                logo.style.transform = 'scale(1.1) rotate(5deg)';
-                setTimeout(() => logo.style.transform = 'scale(1) rotate(0deg)', 300);
-                
-                // Efeito de explosão de partículas
-                const rect = logo.getBoundingClientRect();
-                const containerRect = container.getBoundingClientRect();
-                const centerX = (rect.left + rect.right) / 2 - containerRect.left;
-                const centerY = (rect.top + rect.bottom) / 2 - containerRect.top;
-                
-                for (let i = 0; i < 20; i++) {
-                    setTimeout(() => createParticle(centerX, centerY), i * 50);
-                }
-            });
-            
-            // Função para criar partículas animadas
->>>>>>> temp-branch
             function createParticle(x, y) {
                 const particle = document.createElement('div');
                 particle.className = 'particle';
                 
-<<<<<<< HEAD
                 // Tamanho aleatório
                 const size = Math.random() * 6 + 2;
                 particle.style.width = `${size}px`;
@@ -555,14 +477,6 @@
                 particle.style.top = `${y}px`;
                 
                 // Direção aleatória
-=======
-                const size = Math.random() * 6 + 2;
-                particle.style.width = `${size}px`;
-                particle.style.height = `${size}px`;
-                particle.style.left = `${x}px`;
-                particle.style.top = `${y}px`;
-                
->>>>>>> temp-branch
                 const angle = Math.random() * Math.PI * 2;
                 const speed = Math.random() * 2 + 1;
                 const vx = Math.cos(angle) * speed;
@@ -570,10 +484,7 @@
                 
                 container.appendChild(particle);
                 
-<<<<<<< HEAD
                 // Animação da partícula
-=======
->>>>>>> temp-branch
                 let opacity = 0.8;
                 let posX = x;
                 let posY = y;
@@ -587,20 +498,15 @@
                     particle.style.left = `${posX}px`;
                     particle.style.top = `${posY}px`;
                     
-<<<<<<< HEAD
                     if (opacity > 0) {
                         requestAnimationFrame(animateParticle);
                     } else {
                         particle.remove();
                     }
-=======
-                    opacity > 0 ? requestAnimationFrame(animateParticle) : particle.remove();
->>>>>>> temp-branch
                 }
                 
                 requestAnimationFrame(animateParticle);
             }
-<<<<<<< HEAD
             
             // Interação ao clicar na logo
             logo.addEventListener('click', () => {
@@ -636,87 +542,5 @@
             }
         }
     </script>
-=======
-        }
-
-        // 2. Validação de Força da Senha
-        if (passwordInput && strengthIndicator) {
-            passwordInput.addEventListener('input', function() {
-                const password = this.value;
-                let strength = 0;
-                
-                // Critérios de força
-                const criteria = {
-                    length: password.length >= 8,
-                    lowercase: /[a-z]/.test(password),
-                    uppercase: /[A-Z]/.test(password),
-                    number: /[0-9]/.test(password),
-                    specialChar: /[^A-Za-z0-9]/.test(password),
-                    longPassword: password.length >= 12
-                };
-                
-                // Pontuar cada critério atendido
-                Object.values(criteria).forEach(met => met && strength++);
-                
-                // Converter para porcentagem (6 critérios possíveis)
-                const strengthPercent = (strength / 6) * 100;
-                
-                // Atualizar visualização
-                strengthIndicator.style.width = `${strengthPercent}%`;
-                
-                // Atualizar cor conforme força
-                if (strength <= 2) {
-                    strengthIndicator.className = 'password-strength bg-red-500';
-                } else if (strength <= 4) {
-                    strengthIndicator.className = 'password-strength bg-yellow-500';
-                } else {
-                    strengthIndicator.className = 'password-strength bg-green-500';
-                }
-                
-                // Resetar se vazio
-                if (!password) strengthIndicator.style.width = '0%';
-            });
-        }
-
-        // 3. Checkbox Customizado
-        if (checkbox) {
-            checkbox.addEventListener('change', function() {
-                const checkboxCustom = this.nextElementSibling;
-                this.checked ? 
-                    checkboxCustom.classList.add('bg-green-600', 'border-green-600') :
-                    checkboxCustom.classList.remove('bg-green-600', 'border-green-600');
-            });
-        }
-
-        // 4. Validação do Formulário
-        if (form) {
-            form.addEventListener('submit', function(e) {
-                e.preventDefault();
-                
-                // Verificar se as senhas coincidem
-                const password = this.querySelector('[name="password"]').value;
-                const confirmPassword = this.querySelector('[name="password_confirmation"]').value;
-                
-                if (password !== confirmPassword) {
-                    errorContainer.classList.remove('hidden');
-                    errorMessage.textContent = 'As senhas não coincidem!';
-                    return;
-                }
-                
-                // Verificar força mínima da senha
-                if (password.length < 8) {
-                    errorContainer.classList.remove('hidden');
-                    errorMessage.textContent = 'A senha deve ter pelo menos 8 caracteres!';
-                    return;
-                }
-                
-                // Se tudo estiver ok, submeter o formulário
-                errorContainer.classList.add('hidden');
-                this.submit();
-            });
-        }
-    });
-</script>
->>>>>>> temp-branch
 </body>
 </html>

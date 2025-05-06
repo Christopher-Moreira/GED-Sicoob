@@ -2,10 +2,7 @@
 
 namespace App\Models;
 
-<<<<<<< HEAD
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
-=======
->>>>>>> temp-branch
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -13,11 +10,6 @@ use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
 {
-<<<<<<< HEAD
-=======
-    use HasApiTokens, HasFactory, Notifiable;
-
->>>>>>> temp-branch
     /**
      * The attributes that are mass assignable.
      *
@@ -31,10 +23,8 @@ class User extends Authenticatable
         'cargo',
         'password',
         'segregacao',
-<<<<<<< HEAD
+        'ativo',
     
-=======
->>>>>>> temp-branch
     ];
 
     /**
@@ -54,21 +44,12 @@ class User extends Authenticatable
      */
     protected $casts = [
         'ativo' => 'boolean',
-<<<<<<< HEAD
-        'google2fa_secrete' => 'boolean',
-=======
-        'google2fa_screte' => 'boolean',
->>>>>>> temp-branch
+        'google2fa_secret' => 'boolean',
         'can_be_admin' => 'boolean',
         'can_be_user' => 'boolean',
         'can_edit' => 'boolean',
         'can_delete' =>'boolean',
         'can_see' => 'boolean',
-<<<<<<< HEAD
         
     ];
 }
-=======
-    ];
-}
->>>>>>> temp-branch
