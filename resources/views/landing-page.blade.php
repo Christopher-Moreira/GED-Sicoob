@@ -211,7 +211,7 @@
                         </a>
                     </li>
                     <li class="mb-1">
-                        <a href="#" class="sidebar-item flex items-center px-4 py-3 text-gray-600 rounded-md">
+                        <a href="arquivos" class="sidebar-item flex items-center px-4 py-3 text-gray-600 rounded-md">
                             <i class='bx bx-folder text-xl mr-3'></i>
                             <span>ARQUIVOS</span>
                         </a>

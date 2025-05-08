@@ -23,8 +23,10 @@ Route::middleware('guest')->group(function () {
     Route::get('/register', [AuthController::class, 'showRegistrationForm'])->name('register');
     Route::post('/register', [AuthController::class, 'register']);
 
-    //Rota LandingPage para teste
+    //Rotas para teste
     Route::get('/ged', [AuthController::class, 'showLandingPage'])->name('login');
+    Route::get('/arquivos', [AuthController::class, 'showArquivosList'])->name('login');
+    
     
 });
 

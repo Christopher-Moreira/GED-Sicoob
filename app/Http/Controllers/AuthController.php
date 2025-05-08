@@ -71,4 +71,8 @@ class AuthController extends Controller
     public function showLandingPage(){
         return view ('landing-page');
     }
+
+    public function showArquivosList(){
+        return view ('arquivos-list');
+    }
 }
